@@ -1,7 +1,6 @@
 ---
 title: "Analogue: A Hate Story"
-layout: post
-date: 2012-09-17 23:44
+pubDate: 2012-09-17 23:44
 ---
 
 I don't want to talk a lot about
@@ -11,7 +10,6 @@ about improved the experience of playing it.
 
 <img src="/img/analogue.jpg" alt="Analogue: A Hate Story Cover Art"
 class="figure" />
-
 
 So instead of treading cautiously in quasi spoiler territory, I will
 limit myself to recommend that you play it. Go with an open mind and

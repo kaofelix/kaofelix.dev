@@ -1,8 +1,6 @@
 ---
 title: Ocarina of Time
-layout: post
-date: 2012-09-05 14:49
-postclass: zelda
+pubDate: 2012-09-05 14:49
 ---
 
 I was thinking about happiness yesterday. My main point of anxiety in
@@ -25,13 +23,13 @@ of it. But I'm not happy for it anymore.
 
 While I wondered about the why the happy feelings from positive events
 can't be lasting, I started thinking about another recent rewarding
-experience, namely *The Legend of Zelda: Ocarina of Time 3D*.
+experience, namely _The Legend of Zelda: Ocarina of Time 3D_.
 
 ---
 
 I consider myself a Zelda fan. While I'm not the fanatic collector
-kind of fan, I remember clearly the sensation when I first played *A
-Link to the Past*. I had a Megavision at the time — a cheap knockoff
+kind of fan, I remember clearly the sensation when I first played _A
+Link to the Past_. I had a Megavision at the time — a cheap knockoff
 of the Sega Mega Drive, a.k.a. Genesis — and I played the game at the
 house of a friend that had a SNES. I've begged that he lent me the
 console for a weekend with the cartridge, which he did. After that, I
@@ -40,7 +38,7 @@ and going to the restroom. I don't know why that game was so appealing
 to me, but I just felt linked to it, it just made sense.
 
 Some years later I went to some other friend's place and played
-*Ocarina of Time* for the first time. It was ridiculous. I remember at
+_Ocarina of Time_ for the first time. It was ridiculous. I remember at
 the time how truly 3D it was. The levels were designed in 3D, as
 opposed to the 3D rendition of 2D gameplay a lot of games of the time
 had. For a long time I had this longing sensation about the game. I
@@ -54,13 +52,13 @@ like this:
 
 > Feliz  
 > Aniversario  
-> KAO  
-> 
-> *(which means: 'Happy Birthday, Kao')*
+> KAO
+>
+> _(which means: 'Happy Birthday, Kao')_
 
 I couldn't make myself erase it, so I just started the game on the
-*KAO* slot. I spent hours running around *Hyrule*, killing monsters,
-finding secrets, solving puzzles, and even fishing. 
+_KAO_ slot. I spent hours running around _Hyrule_, killing monsters,
+finding secrets, solving puzzles, and even fishing.
 
 Which gets us to now, about a year after I bought my Nintendo 3DS in
 San Francisco with the new glasses free 3D rendition of the game. I've
@@ -109,11 +107,11 @@ game itself.
 I see a lot of the mainstream games that try to look like movies, try
 to tell deeper stories, try to simulate real life sports with the
 maximum fidelity possible, and that's fine. But my deepest love for
-video-games lies in games like *Ocarina of Time*. A game that talks to
+video-games lies in games like _Ocarina of Time_. A game that talks to
 you through simpler graphics and sounds, simpler plot, less realism,
 but tied together with such a masterful design that the result ends up
 being greater than anything else.
 
-*I love video-games* is too broad of a sentence nowadays. The part of
+_I love video-games_ is too broad of a sentence nowadays. The part of
 the universe of video games that I do love is represented by the likes
-of *Ocarina of Time*.
+of _Ocarina of Time_.

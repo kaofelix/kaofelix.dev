@@ -1,35 +1,22 @@
 ---
 import { Image } from "astro:assets";
 import kaoPicture from "./kao.jpg";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About Me";
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Astro</title>
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
+<BaseLayout title={pageTitle}>
+  <Image src={kaoPicture} alt="Kao's photo" />
 
-    <h1>{pageTitle}</h1>
-
-    <Image src={kaoPicture} alt="Kao's photo" />
-
-    <p>
-      I'm Kao Félix, a software developer working for <a href="https://sahaj.ai"
-        >Sahaj Software</a
-      >
-    </p>
-    <p>
-      I like <a href="https://github.com/kaofelix/kao-emacs-config">Emacs</a>
-    </p>
-  </body>
-</html>
+  <p>
+    I'm Kao Félix, a software developer working for <a href="https://sahaj.ai"
+      >Sahaj Software</a
+    >
+  </p>
+  <p>
+    I like <a href="https://github.com/kaofelix/kao-emacs-config">Emacs</a>
+  </p>
+</BaseLayout>

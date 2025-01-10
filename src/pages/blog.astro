@@ -1,7 +1,19 @@
-<body>
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
+---
+import PostLink from "../components/PostLink.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const allPosts = Object.values(
+  import.meta.glob("./posts/*.md", { eager: true })
+);
+---
 
-  <h1>Blog</h1>
-</body>
+<BaseLayout title="Blog">
+  <ul>
+    {
+      allPosts.map((post: any) => (
+        <li>
+          <PostLink post={post} />
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

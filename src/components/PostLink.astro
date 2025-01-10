@@ -1,0 +1,6 @@
+---
+const { post } = Astro.props;
+const date = new Date(post.frontmatter.pubDate).toISOString();
+---
+
+<a href={post.url}>{date} - {post.frontmatter.title}</a>

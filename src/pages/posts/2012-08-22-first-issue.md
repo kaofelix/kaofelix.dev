@@ -1,7 +1,6 @@
 ---
 title: First Issue
-date: 2012-08-22 11:37
-layout: post
+pubDate: 2012-08-22 11:37
 ---
 
 I have already ran into my first issue on making this website work.
