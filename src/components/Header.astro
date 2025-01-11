@@ -9,17 +9,19 @@ const sections = [
 ];
 ---
 
-<div class="flex justify-between items-end space-x-4 mb-20">
-  <h1 class="font-extrabold text-5xl text-rose-800">kao's page</h1>
-  <ul class="flex space-x-3">
+<div class="mb-20">
+  <h1 class="-mt-6 uppercase font-black text-9xl text-zinc-500">
+    <span class="text-rose-600">kao's</span> page
+  </h1>
+  <ul class="flex justify-end space-x-3">
     {
       sections.map((section) => (
         <li>
           <a
             href={section.url}
             class={
-              "text-2xl inline-block text-gray-500 hover:text-rose-800 " +
-              (isCurrent(section.url) ? "text-rose-800" : "")
+              "font-black text-4xl inline-block text-gray-500 hover:text-rose-800 " +
+              (isCurrent(section.url) ? "text-rose-600" : "")
             }
           >
             {section.title}
