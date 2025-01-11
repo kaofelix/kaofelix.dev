@@ -3,4 +3,6 @@ const { post } = Astro.props;
 const date = new Date(post.frontmatter.pubDate).toISOString();
 ---
 
-<a href={post.url}>{date} - {post.frontmatter.title}</a>
+<a class="no-underline hover:underline" href={post.url}
+  >{date} - {post.frontmatter.title}</a
+>

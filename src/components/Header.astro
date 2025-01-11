@@ -11,9 +11,9 @@ const sections = [
 
 <div class="mb-20">
   <h1
-    class="-mt-6 mb-5 text-center uppercase font-black text-9xl text-zinc-500"
+    class="-mt-6 mb-5 text-center uppercase font-black text-9xl text-zinc-500 dark:text-zinc-300"
   >
-    <span class="text-rose-600">kao's</span> page
+    <span class="text-rose-600 dark:text-rose-500">kao's</span> page
   </h1>
   <ul class="flex justify-center space-x-3">
     {
@@ -22,8 +22,10 @@ const sections = [
           <a
             href={section.url}
             class={
-              "font-black text-4xl inline-block text-gray-500 hover:text-rose-800 " +
-              (isCurrent(section.url) ? "text-rose-600" : "")
+              "font-black text-4xl " +
+              (isCurrent(section.url)
+                ? "text-rose-600 dark:text-rose-500"
+                : "text-zinc-500 dark:text-zinc-300")
             }
           >
             {section.title}

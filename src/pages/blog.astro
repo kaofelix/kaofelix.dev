@@ -9,13 +9,18 @@ const allPosts = Object.values(
 ---
 
 <BaseLayout title="Blog">
-  <ul>
-    {
-      allPosts.map((post: any) => (
-        <li>
-          <PostLink post={post} />
-        </li>
-      ))
-    }
-  </ul>
+  <div class="prose lg:prose-xl dark:prose-invert">
+    <h1>blog archive</h1>
+    <p>I write about things I learn, and things I like.</p>
+
+    <ul>
+      {
+        allPosts.map((post: any) => (
+          <li>
+            <PostLink post={post} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>

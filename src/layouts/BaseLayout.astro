@@ -4,13 +4,13 @@ import Header from "../components/Header.astro";
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
-  <body class="max-w-4xl mx-auto px-4 bg-zinc-100">
+  <body class="max-w-4xl mx-auto px-4 bg-zinc-100 dark:bg-zinc-900">
     <Header />
     <div class="mx-auto max-w-3xl">
       <slot />
