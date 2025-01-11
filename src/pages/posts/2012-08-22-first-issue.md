@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: First Issue
 pubDate: 2012-08-22 11:37
 ---

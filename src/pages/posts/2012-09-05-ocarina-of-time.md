@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: Ocarina of Time
 pubDate: 2012-09-05 14:49
 ---

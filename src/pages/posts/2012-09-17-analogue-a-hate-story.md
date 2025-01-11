@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Analogue: A Hate Story"
 pubDate: 2012-09-17 23:44
 ---

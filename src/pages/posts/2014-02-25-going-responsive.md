@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: Going Responsive
 pubDate: 2014-02-25 19:29
 ---

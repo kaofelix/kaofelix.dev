@@ -3,6 +3,8 @@ import PostLink from "../components/PostLink.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const allPosts = Object.values(
   import.meta.glob("./posts/*.md", { eager: true })
+).sort((a: any, b: any) =>
+  a.frontmatter.pubDate < b.frontmatter.pubDate ? 1 : -1
 );
 ---
 

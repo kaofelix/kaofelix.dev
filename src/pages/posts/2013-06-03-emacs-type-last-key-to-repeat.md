@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Emacs: Type Last Key to Repeat"
 pubDate: 2013-06-03 21:58
 ---

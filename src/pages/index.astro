@@ -9,12 +9,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 ---
 
 <BaseLayout title={pageTitle}>
-  <div>
-    <Image
-      src={kaoPicture}
-      alt="Kao's photo"
-      class="rounded-full size-32 mb-5"
-    />
+  <div class="flex flex-col items-center mb-16">
+    <Image src={kaoPicture} alt="Kao's photo" class="rounded-full size-32" />
+  </div>
+  <div class="prose lg:prose-xl">
     <p>
       I'm Kao Félix, a software developer working for <a href="https://sahaj.ai"
         >Sahaj Software</a
