@@ -1,5 +1,27 @@
 ---
+import { Image } from "astro:assets";
+import kaoPicture from "./kao.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "About Me";
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 ---
 
-<BaseLayout title="kao's page" />
+<BaseLayout title={pageTitle}>
+  <div>
+    <Image
+      src={kaoPicture}
+      alt="Kao's photo"
+      class="rounded-full size-32 mb-5"
+    />
+    <p>
+      I'm Kao Félix, a software developer working for <a href="https://sahaj.ai"
+        >Sahaj Software</a
+      >
+    </p>
+    <p>
+      I like <a href="https://github.com/kaofelix/kao-emacs-config">Emacs</a>
+    </p>
+  </div>
+</BaseLayout>
