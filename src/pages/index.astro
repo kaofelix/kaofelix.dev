@@ -1,4 +1,5 @@
 ---
+import SocialIcons from "../components/SocialIcons.astro";
 import { Image } from "astro:assets";
 import kaoPicture from "./kao.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -9,8 +10,13 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 ---
 
 <BaseLayout title={pageTitle}>
-  <div class="flex flex-col items-center mb-16">
-    <Image src={kaoPicture} alt="Kao's photo" class="rounded-full size-32" />
+  <div class="flex flex-col items-center mb-12">
+    <Image
+      src={kaoPicture}
+      alt="Kao's photo"
+      class="rounded-full size-32 mb-4"
+    />
+    <SocialIcons />
   </div>
   <div class="prose lg:prose-xl dark:prose-invert">
     <p>

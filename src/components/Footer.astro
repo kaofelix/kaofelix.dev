@@ -1,10 +1,13 @@
 ---
+import SocialIcons from "./SocialIcons.astro";
+
 const platform = "github";
 const username = "kaofelix";
 ---
 
 <footer class="mt-10 mb-48 text-slate-400 dark:text-slate-600">
   <!-- <p class="text-center mt-10 mb-48">✦. ─────── ૮ ˶ᵔ ᵕ ᵔ˶ ა ─────── .✦</p> -->
-  <p class="text-center">𓆝 𓆟 𓆞 𓆝 𓆟</p>
+  <p class="text-center text-xl">𓆝 𓆟 𓆞 𓆝 𓆟</p>
   <!-- <p class="text-center">┬┴┬┴┬┴┬┴┤･ω･)ﾉ├┬┴┬┴┬┴┬┴</p> -->
+  {Astro.url.pathname !== "/" && <SocialIcons size="24" color="text-inherit" />}
 </footer>

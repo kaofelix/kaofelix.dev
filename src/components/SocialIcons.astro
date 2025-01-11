@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+const { size = 32, color = "text-zinc-500 dark:text-zinc-300" } = Astro.props;
+---
+
+<ul class={"flex justify-center space-x-3 " + color}>
+  <li>
+    <a href="https://github.com/kaofelix">
+      <Icon name="github-fill" size={size} />
+    </a>
+  </li>
+  <li>
+    <a href="https://bsky.app/profile/kaofelix.dev">
+      <Icon name="bluesky-fill" size={size} />
+    </a>
+    <li>
+      <a href="https://mastodon.online/@kaofelix">
+        <Icon name="mastodon-fill" size={size} />
+      </a>
+    </li>
+  </li>
+</ul>
