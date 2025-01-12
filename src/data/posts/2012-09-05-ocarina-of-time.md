@@ -1,7 +1,6 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: Ocarina of Time
-pubDate: 2012-09-05 14:49
+pubDate: 2012-09-05T14:49:00+00:00
 ---
 
 I was thinking about happiness yesterday. My main point of anxiety in

@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Using Github with Multiple Accounts"
 tags: ["git", "shell", "workflow", "emacs"]
 pubDate: 2019-04-08T22:03:16+02:00

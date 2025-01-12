@@ -1,7 +1,6 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: Going Responsive
-pubDate: 2014-02-25 19:29
+pubDate: 2014-02-25T19:29:00+00:00
 ---
 
 <p class="intro"> After many months of silence, here comes another meta-post. My blog/test-bed-for-HTML-and-CSS-stuff-I-want-to-learn gets a redesign. One of the intentions was learning about how to make it responsive and look readable on a phone. The other is applying the learning from Hack Design, an online design course targeted at coders.</p>

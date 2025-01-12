@@ -1,8 +1,0 @@
----
-const { post } = Astro.props;
-const date = new Date(post.frontmatter.pubDate).toISOString().slice(0, 10);
----
-
-<a class="no-underline hover:underline" href={post.url}
-  >{date} - {post.frontmatter.title}</a
->

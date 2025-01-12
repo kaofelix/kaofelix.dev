@@ -1,7 +1,6 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Emacs: Type Last Key to Repeat"
-pubDate: 2013-06-03 21:58
+pubDate: 2013-06-03T21:58:00+00:00
 ---
 
 My Emacs configuration most comprises of bits I got here and there

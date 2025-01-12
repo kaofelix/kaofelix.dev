@@ -1,7 +1,6 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: First Issue
-pubDate: 2012-08-22 11:37
+pubDate: 2012-08-22T11:37:00+00:00
 ---
 
 I have already ran into my first issue on making this website work.

@@ -1,0 +1,28 @@
+---
+import PostExcerpt from "@igor.dvlpr/astro-post-excerpt";
+import { getCollection } from "astro:content";
+import { sortByDate as sortByRecent } from "../utils";
+const allPosts = await getCollection("posts");
+---
+
+{
+  allPosts
+    .sort(sortByRecent)
+    .slice(0, 3)
+    .map((post: any) => (
+      <a class="no-underline hover:underline" href={"/posts/" + post.id}>
+        <h3 class="-mb-1 text-rose-600 dark:text-rose-500">
+          {post.data.title}
+        </h3>
+        <p class="-mb-3 text-sm text-slate-600 dark:text-slate-500">
+          Published on: {post.data.pubDate}
+        </p>
+        <p class="font-normal text-slate-600 dark:text-slate-500">
+          <PostExcerpt post={post} />
+        </p>
+      </a>
+    ))
+}
+<p class="text-center">
+  <a href="/blog/" class="text-rose-600 dark:text-rose-500">see archive</a>
+</p>

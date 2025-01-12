@@ -1,31 +1,48 @@
 ---
 import SocialIcons from "../components/SocialIcons.astro";
+import LatestPosts from "../components/LatestPosts.astro";
 import { Image } from "astro:assets";
 import kaoPicture from "./kao.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "About Me";
-
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 ---
 
 <BaseLayout title={pageTitle}>
   <div class="flex flex-col items-center mb-12">
     <Image
       src={kaoPicture}
-      alt="Kao's photo"
+      alt={"Close up of Kao's face, while he's lying down over a picnic towel, " +
+        "hands behind his head, wearing orange rimmed sunglasses, grey t-shirt " +
+        "and a daisy attached to his dark hair and a big smile surounded by his beard."}
       class="rounded-full size-32 mb-4"
     />
     <SocialIcons />
   </div>
-  <div class="prose lg:prose-xl dark:prose-invert">
-    <p>
-      I'm Kao Félix, a software developer working for <a href="https://sahaj.ai"
-        >Sahaj Software</a
+  <div class="mx-auto prose lg:prose-xl dark:prose-invert">
+    <h1 class="text-center">
+      Hi, I'm <span class="font-bold text-rose-600 dark:text-rose-500"
+        >Kao Félix</span
       >
+    </h1>
+    <p>
+      I'm a parent and I have a dog. I work as a Software Developer and I love
+      music, video games, art, and programming.
     </p>
     <p>
-      I like <a href="https://github.com/kaofelix/kao-emacs-config">Emacs</a>
+      I currently work for <a href="https://sahaj.ai">Sahaj Software</a>, a
+      software consultancy company, where I help clients to build and maintain
+      different sorts of application.
     </p>
+    <p>
+      I will do most of my work in <a
+        href="https://github.com/kaofelix/kao-emacs-config">Emacs</a
+      >, with few exceptions. I'm a fan of Python for it's combination of
+      simplicity and pragmatism, which I would say is the language that I'm most
+      fluent on, but I will take on any language or technology that is necessary
+      to get the job done.
+    </p>
+    <h2>I write stuff, sometimes...</h2>
+    <LatestPosts />
   </div>
 </BaseLayout>
