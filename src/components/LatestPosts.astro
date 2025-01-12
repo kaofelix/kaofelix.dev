@@ -17,7 +17,7 @@ const allPosts = await getCollection("posts");
         <p class="-mb-3 text-sm text-slate-600 dark:text-slate-500">
           Published on: {post.data.pubDate}
         </p>
-        <p class="font-normal text-slate-600 dark:text-slate-500">
+        <p class="font-normal prose dark:prose-invert">
           <PostExcerpt post={post} />
         </p>
       </a>
