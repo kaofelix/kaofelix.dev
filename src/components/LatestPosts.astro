@@ -11,10 +11,10 @@ const allPosts = await getCollection("posts");
     .slice(0, 3)
     .map((post: any) => (
       <a class="no-underline hover:underline" href={"/posts/" + post.id}>
-        <h3 class="-mb-1 text-rose-600 dark:text-rose-500">
+        <h3 class="-mb-0.5 md:-mb-0.5 text-rose-600 dark:text-rose-500">
           {post.data.title}
         </h3>
-        <p class="-mb-3 text-sm text-zinc-600 dark:text-zinc-500">
+        <p class="-mb-2 md:-mb-2 text-sm text-zinc-600 dark:text-zinc-500">
           Published on: {post.data.pubDate}
         </p>
         <p class="font-normal prose dark:prose-invert">
