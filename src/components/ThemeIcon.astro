@@ -3,8 +3,16 @@ import { Icon } from "astro-icon/components";
 ---
 
 <button id="themeToggle" class="text-4xl">
-  <Icon name="moon-fill" class="inline dark:hidden text-zinc-500" size={28} />
-  <Icon name="sun-fill" class="hidden dark:inline text-zinc-300" size={28} />
+  <Icon
+    name="moon-fill"
+    class="inline dark:hidden text-zinc-500 hover:text-rose-600 dark:hover:text-rose-500 transition-color"
+    size={28}
+  />
+  <Icon
+    name="sun-fill"
+    class="hidden dark:inline text-zinc-300 hover:text-rose-600 dark:hover:text-rose-500 transition-color"
+    size={28}
+  />
 </button>
 
 <script is:inline>

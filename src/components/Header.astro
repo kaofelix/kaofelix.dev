@@ -24,6 +24,7 @@ const sections = [
             href={section.url}
             class={
               "font-black text-4xl " +
+              "hover:text-rose-600 dark:hover:text-rose-500 transition-color " +
               (isCurrent(section.url)
                 ? "text-rose-600 dark:text-rose-500"
                 : "text-zinc-500 dark:text-zinc-300")

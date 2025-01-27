@@ -1,22 +1,32 @@
 ---
 import { Icon } from "astro-icon/components";
 const { size = 32, color = "text-zinc-500 dark:text-zinc-300" } = Astro.props;
+const socials = [
+  {
+    name: "github",
+    url: "https://github.com/kaofelix",
+  },
+  {
+    name: "bluesky",
+    url: "https://bsky.app/profile/kaofelix.dev",
+  },
+  {
+    name: "mastodon",
+    url: "https://mastodon.online/@kaofelix",
+  },
+];
 ---
-
 <ul class={"flex justify-center space-x-3 " + color}>
-  <li>
-    <a href="https://github.com/kaofelix">
-      <Icon name="github-fill" size={size} />
-    </a>
-  </li>
-  <li>
-    <a href="https://bsky.app/profile/kaofelix.dev">
-      <Icon name="bluesky-fill" size={size} />
-    </a>
-    <li>
-      <a href="https://mastodon.online/@kaofelix">
-        <Icon name="mastodon-fill" size={size} />
-      </a>
-    </li>
-  </li>
+  {
+    socials.map((social) => (
+      <li>
+        <a
+          href={social.url}
+          class="hover:text-rose-600 dark:hover:text-rose-500 transition-colors"
+        >
+          <Icon name={social.name + "-fill"} size={size} />
+        </a>
+      </li>
+    ))
+  }
 </ul>
