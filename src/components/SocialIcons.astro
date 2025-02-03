@@ -12,7 +12,6 @@ const socials = [
   },
   {
     name: "mastodon",
-    rel: "me",
     url: "https://mastodon.online/@kaofelix",
   },
 ];
@@ -23,7 +22,6 @@ const socials = [
       <li>
         <a
           href={social.url}
-          rel={social.rel}
           class="hover:text-rose-600 dark:hover:text-rose-500 transition-colors"
         >
           <Icon name={social.name + "-fill"} size={size} />
