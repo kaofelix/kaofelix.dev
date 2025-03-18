@@ -1,13 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
-
 import icon from 'astro-icon';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), icon()],
+  integrations: [icon()],
+
   markdown: {
     shikiConfig: {
       themes: {
@@ -15,5 +16,9 @@ export default defineConfig({
         dark: 'github-dark',
       },
     },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
