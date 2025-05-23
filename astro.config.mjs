@@ -5,9 +5,11 @@ import icon from 'astro-icon';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import preact from '@astrojs/preact';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [icon()],
+  integrations: [icon(), preact()],
 
   markdown: {
     shikiConfig: {

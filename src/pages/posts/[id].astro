@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import CommentSection  from "../../components/comments/CommentSection";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -15,7 +16,7 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout>
-  <article class="mx-auto prose md:prose-lg prose-zinc dark:prose-invert">
+  <article class="prose md:prose-lg prose-zinc dark:prose-invert">
     <h1 class="text-5xl -mb-4 text-rose-600 dark:text-rose-500">
       {post.data.title}
     </h1>
@@ -24,4 +25,5 @@ const { Content } = await render(post);
     </p>
     <Content />
   </article>
+  {post.data.bskyUri && <CommentSection client:load uri={post.data.bskyUri} />}
 </BaseLayout>
