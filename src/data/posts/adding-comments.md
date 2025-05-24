@@ -3,12 +3,13 @@ title: Adding Comments
 pubDate: 2025-05-24T10:01:55Z
 ---
 
-For a while now I've been wanting to add  Bluesky comments to my blog. Like many people, I believe, I first discovered this idea when I came across these post:
+For a while now I've been wanting to add Bluesky comments to my blog. Like many people, I believe, I first discovered this idea when I came across these post:
 
 <div class="flex justify-center">
 <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:vjug55kidv6sye7ykr5faxxn/app.bsky.feed.post/3lbq7mxsiek2v" data-bluesky-cid="bafyreie37qtk6ldmdof2ysxjokx5pirnlbdu7hdlivkkaeok2zndql2nwm" data-bluesky-embed-color-mode="system"><p lang="en">also, any replies in this thread will appear as comments on the blog post itself. made possible by the aforementioned Open Network 🫡
 
 ft. @shreyanjain.net&#x27;s reply below<br><br><a href="https://bsky.app/profile/did:plc:vjug55kidv6sye7ykr5faxxn/post/3lbq7mxsiek2v?ref_src=embed">[image or embed]</a></p>&mdash; Emily Liu (<a href="https://bsky.app/profile/did:plc:vjug55kidv6sye7ykr5faxxn?ref_src=embed">@emilyliu.me</a>) <a href="https://bsky.app/profile/did:plc:vjug55kidv6sye7ykr5faxxn/post/3lbq7mxsiek2v?ref_src=embed">November 25, 2024 at 12:58 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
 </div>
 
 which then led me to the posts:
@@ -25,6 +26,7 @@ So I knew it was time to dive into [Astro Client Islands](https://docs.astro.bui
 I struggled a bit to make my client island work at first. Some things are a bit obvious, in retrospect, but took quite a bit of furious tweaking an retrying.
 
 First one was that you can't really import your Astro components from your client framework components. I should have figured that one out from the start, but it didn't help that it manifested itself with the very cryptic error message:
+
 ```
 SyntaxError: Importing binding name 'default' cannot be resolved by star export entries.
 ```
@@ -36,7 +38,7 @@ The second was more subtle. I, being a clever pythonista, decided it would be ne
 ```ts
 function* replyThread(rootComment: BlueskyPost) {
   let comment = rootComment;
-  while(comment.replies && comment.replies.length > 0) {
+  while (comment.replies && comment.replies.length > 0) {
     comment = comment.replies[0];
     yield comment;
   }
@@ -46,9 +48,9 @@ function* replyThread(rootComment: BlueskyPost) {
 which I was directly calling map on to render the replies like this
 
 ```tsx
-{replyThread(comment).map((reply: any) => (
-    <Comment comment={reply} />
-))}
+{
+  replyThread(comment).map((reply: any) => <Comment comment={reply} />);
+}
 ```
 
 And it worked! In the Astro component... when I moved over to the client island I started getting
@@ -61,10 +63,12 @@ After yet another frantic and desperate debugging session, I finally narrowed it
 
 ## How did I do it?
 
-In my astro post template I added 
+In my astro post template I added
 
 ```tsx
-{post.data.bskyUri && <CommentSection client:load uri={post.data.bskyUri} />}
+{
+  post.data.bskyUri && <CommentSection client:load uri={post.data.bskyUri} />;
+}
 ```
 
 So, if my post has a `bskyUri`, it will now also show a comment section. There's a message with a link to the post and if there are any replies, they will show in a list below.
@@ -72,20 +76,24 @@ So, if my post has a `bskyUri`, it will now also show a comment section. There's
 I'm doing that API call to fetch the main post replies like all the others. It's so neat and simple! Just a public URL, no auth or whatever.
 
 ```ts
-const endpoint =
-  `https://api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(uri)}`;
+const endpoint = `https://api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(uri)}`;
 
-const { isLoading, isError, error, data: comments } = useQuery<BlueskyPost[]>(endpoint, async () => {
-    const response = await fetch(endpoint, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
-    const data = await response.json();
-    return data.thread?.replies;
+const {
+  isLoading,
+  isError,
+  error,
+  data: comments,
+} = useQuery<BlueskyPost[]>(endpoint, async () => {
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
   });
+
+  const data = await response.json();
+  return data.thread?.replies;
+});
 ```
 
 I'm using [`preact-fetching`](https://github.com/aduth/preact-fetching) because now I'm so spoiled at work with the nice API from Apollo Client that I want some of that fanciness for myself. I know a lot of people are really anti framework, third-party packages, etc. Well, today I'm feeling like doing some `npm installs` and make my life slightly easier, why not.
@@ -93,15 +101,17 @@ I'm using [`preact-fetching`](https://github.com/aduth/preact-fetching) because 
 I loop over all replies I fetched and render them. I first render the parent comment, then the replies to that since I want to add an `<hr>` between each conversation thread
 
 ```tsx
-{comments.map((comment) => (
-  <>
-    <Comment comment={comment} />
-    {replyThread(comment).map((reply) => (
-	  <Comment comment={reply} />
-    ))}
-    <hr class="text-zinc-400 dark:text-zinc-600 mt-4 mb-4" />
-  </>
-))}
+{
+  comments.map((comment) => (
+    <>
+      <Comment comment={comment} />
+      {replyThread(comment).map((reply) => (
+        <Comment comment={reply} />
+      ))}
+      <hr class="text-zinc-400 dark:text-zinc-600 mt-4 mb-4" />
+    </>
+  ));
+}
 ```
 
 Finally, my reply thread fetching function, now with no generators. In the context of this function, each `rootComment` is an individual reply to the post that is linked to this blog post. So this is to fetch the replies to those to show a little conversation thread below.

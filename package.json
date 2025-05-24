@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@igor.dvlpr/astro-post-excerpt": "^3.0.4",
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.16",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1"
   }
 }

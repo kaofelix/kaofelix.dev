@@ -42,24 +42,28 @@ export default function CommentSection({ uri }: Props) {
 }
 
 interface CommentListProps {
-  uri: string
+  uri: string;
 }
-const CommentList: FC<CommentListProps> = ({uri}) => {
+const CommentList: FC<CommentListProps> = ({ uri }) => {
   const { comments } = useComments(uri);
 
   if (!comments || comments.length == 0) {
     return null;
   }
 
-  return <div>
-           {comments.map((comment, index) => (
-             <>
-               <Comment comment={comment} />
-               {replyThread(comment).map((reply) => (
-                 <Comment comment={reply} />
-               ))}
-               {index+1 < comments.length && <hr class="text-zinc-400 dark:text-zinc-600 mt-4 mb-4" />}
-             </>
-           ))}
-         </div>
-}
+  return (
+    <div>
+      {comments.map((comment, index) => (
+        <>
+          <Comment comment={comment} />
+          {replyThread(comment).map((reply) => (
+            <Comment comment={reply} />
+          ))}
+          {index + 1 < comments.length && (
+            <hr class="text-zinc-400 dark:text-zinc-600 mt-4 mb-4" />
+          )}
+        </>
+      ))}
+    </div>
+  );
+};

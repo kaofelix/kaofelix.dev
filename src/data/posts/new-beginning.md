@@ -39,7 +39,7 @@ managed to write a few posts with it, lost steam and then I switched
 to Hugo in an attempt to rekindle my taste for it through playing with
 a new toy. I also spent time trying to find a highly optmised
 workflow, as software devs will often do, sometimes to a [wasteful
-degree](https://xkcd.com/1205/). 
+degree](https://xkcd.com/1205/).
 
 Or is it waste, really? Maybe it's just me trying to justify my
 frequent yak-shaving, but if most of the time spent in my life could
@@ -74,7 +74,7 @@ it was the vibe in Bluesky right when I joined, felt like I got a
 second chance at trying out Twitter from scratch and maybe get that
 kick that so many people seem to get out of it, but before there was
 playing for engagement and weird influencer celebrities writing
-"content" and lists of the 45 best AI tools released this week. 
+"content" and lists of the 45 best AI tools released this week.
 
 As I started to enjoy this, the urge came back to have a blog. A
 webpage. A site. A space in the internet that is mine and where I can
@@ -110,7 +110,7 @@ with it and it was fun! Tailwind was on my list of "things that I
 think I would love but didn't have an excuse to try" and the fact that
 the integration was so frictionless to install also put me in a place
 where I was ready to play with it. Honestly, it's been a while since
-web development was this fun. 
+web development was this fun.
 
 Now I have not only a static generated blog in place, but a website
 that I actually know how it came to be since I built it. I grasp what
@@ -118,6 +118,6 @@ the code is doing in each place, so I can build it further. I can make
 pages! I can tweak the theme! I can add fancy modern JavaScript stuff
 to play with!
 
-So here's for a new beginning. 
+So here's for a new beginning.
 
 ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧

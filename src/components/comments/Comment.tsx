@@ -24,9 +24,8 @@ export default function Comment({ comment }: Props) {
         <div class="text-sm flex gap-1">
           <span class="font-bold">{comment.post.author.displayName}</span>
           <span class="text-zinc-400 dark:text-zinc-600">
-            @{comment.post.author.handle}{" "}
-            ⋅
-            <time datetime={comment.post.indexedAt} >
+            @{comment.post.author.handle} ⋅
+            <time datetime={comment.post.indexedAt}>
               {new Date(comment.post.indexedAt).toLocaleDateString()}
             </time>
           </span>
@@ -63,9 +62,14 @@ export default function Comment({ comment }: Props) {
 }
 
 interface LinkProps {
-  post: BlueskyPost
+  post: BlueskyPost;
 }
-const PostLink: FC<PropsWithChildren<LinkProps>> = ({children, post}) =>
-  <a href={bskyAppLink(post.post.uri)} target="_blank" rel="noopener noreferrer">
+const PostLink: FC<PropsWithChildren<LinkProps>> = ({ children, post }) => (
+  <a
+    href={bskyAppLink(post.post.uri)}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     {children}
   </a>
+);

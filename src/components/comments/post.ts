@@ -21,4 +21,4 @@ export const bskyAppLink = (uri: string) => {
   const postId = uri.split("/").pop();
   const profile = uri.split("/")[2];
   return `https://bsky.app/profile/${profile}/post/${postId}`;
-}
+};
