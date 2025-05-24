@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
     "@astrojs/preact": "^4.1.0",
     "@fontsource-variable/m-plus-2": "^5.1.1",
     "@tailwindcss/vite": "^4.0.14",
