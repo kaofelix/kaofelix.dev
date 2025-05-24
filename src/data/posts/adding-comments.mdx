@@ -1,6 +1,7 @@
 ---
 title: Adding Comments
 pubDate: 2025-05-24T10:01:55Z
+bskyUri: at://did:plc:b6sut7pcq2qwj72hc6qfzdtj/app.bsky.feed.post/3lpw3ebndoc25
 ---
 
 import { BlueskyPost } from "../../components/embeds.tsx";
@@ -131,6 +132,8 @@ function replyThread(rootComment: BlueskyPost) {
 ```
 
 The `Comment` component is basically purely visual, so it's basically one long JSX thing which is mostly html with Tailwind classes to make it look right. I won't paste it here, but the code for this blog is publicly available anyways, so feel free to check it out!
+
+I also decided for now to just show one plain long thread of first replies and got some inspiration from Bluesky's App View for the looks. I might look into adding arbitrarily nested threads as well later on.
 
 ## Testing it!
 
