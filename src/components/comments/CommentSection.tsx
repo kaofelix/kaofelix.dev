@@ -24,7 +24,7 @@ export default function CommentSection({ uri }: Props) {
   return (
     <section class="mt-20">
       <hr class="text-zinc-400 dark:text-zinc-600 mb-5" />
-      <p class="text-sm text-center text-zinc-500 dark:text-zinc-400 mb-10">
+      <p class="text-xs md:text-sm text-center text-zinc-500 dark:text-zinc-400 mb-10">
         Want to leave a comment? Reply to{" "}
         <a
           href={bskyAppLink(uri)}

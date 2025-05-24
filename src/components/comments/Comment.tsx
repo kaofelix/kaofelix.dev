@@ -7,7 +7,7 @@ interface Props {
 }
 export default function Comment({ comment }: Props) {
   return (
-    <div class="mb-3 flex gap-3">
+    <div class="mb-3 flex gap-3 text-xs md:text-sm">
       <div class="flex flex-col gap-1">
         <img
           src={comment.post.author.avatar}
@@ -21,7 +21,7 @@ export default function Comment({ comment }: Props) {
         </div>
       </div>
       <div class="flex flex-col gap-0.5">
-        <div class="text-sm flex gap-1">
+        <div class="flex gap-1">
           <span class="font-bold">{comment.post.author.displayName}</span>
           <span class="text-zinc-400 dark:text-zinc-600">
             @{comment.post.author.handle} ⋅
@@ -32,10 +32,10 @@ export default function Comment({ comment }: Props) {
         </div>
         <div>
           <PostLink post={comment}>
-            <div class="comment-content">{comment.post.record.text}</div>
+            <div class="text-sm md:text-base">{comment.post.record.text}</div>
           </PostLink>
 
-          <div class="flex items-center gap-4 mt-2 text-sm text-zinc-400 dark:text-zinc-600">
+          <div class="flex items-center gap-4 mt-2 text-zinc-400 dark:text-zinc-600">
             <PostLink post={comment}>
               <span class="flex items-center gap-1 hover:text-zinc-600 dark:hover:text-zinc-400">
                 {comment.post.replyCount || 0}
