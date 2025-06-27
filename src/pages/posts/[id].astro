@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout>
+<BaseLayout title={post.data.title}>
   <article class="prose md:prose-lg prose-zinc dark:prose-invert">
     <h1 class="text-4xl md:text-5xl -mb-4 text-rose-600 dark:text-rose-500">
       {post.data.title}
