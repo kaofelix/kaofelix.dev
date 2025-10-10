@@ -9,11 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/preact": "^4.1.0",
+    "@astrojs/mdx": "^4.3.7",
+    "@astrojs/preact": "^4.1.1",
     "@fontsource-variable/m-plus-2": "^5.1.1",
     "@tailwindcss/vite": "^4.0.14",
-    "astro": "^5.8.0",
+    "astro": "^5.14.3",
     "astro-icon": "^1.1.5",
     "preact": "^10.26.6",
     "preact-fetching": "^1.0.0",
