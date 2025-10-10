@@ -9,6 +9,8 @@ import preact from "@astrojs/preact";
 
 import mdx from '@astrojs/mdx';
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [icon(), preact(), mdx()],
@@ -25,4 +27,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare(),
 });

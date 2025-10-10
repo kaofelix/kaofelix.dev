@@ -3,12 +3,14 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro build && wrangler dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.10",
     "@astrojs/mdx": "^4.3.7",
     "@astrojs/preact": "^4.1.1",
     "@fontsource-variable/m-plus-2": "^5.1.1",
@@ -23,6 +25,7 @@
     "@igor.dvlpr/astro-post-excerpt": "^3.0.4",
     "@tailwindcss/typography": "^0.5.16",
     "prettier": "3.5.3",
-    "prettier-plugin-astro": "0.14.1"
+    "prettier-plugin-astro": "0.14.1",
+    "wrangler": "^4.42.2"
   }
 }
