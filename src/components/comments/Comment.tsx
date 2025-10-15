@@ -21,13 +21,11 @@ export default function Comment({ comment }: Props) {
           <img
             src={comment.author.avatar}
             alt={`${comment.author.name}'s avatar`}
-            class={`w-${avatarSize} h-${avatarSize} rounded-full`}
+            class="w-14 h-14 rounded-full"
           />
           <PlatformIcon type={comment.type} />
         </div>
-        <div
-          class={`relative w-${avatarSize} h-${avatarSize} flex flex-grow items-center`}
-        >
+        <div class="relative w-14 h-14 flex flex-grow items-center">
           {comment.replyCount > 0 && (
             <div class="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-400 dark:bg-zinc-600 transform -translate-x-1/2" />
           )}
