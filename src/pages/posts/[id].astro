@@ -25,5 +25,5 @@ const { Content } = await render(post);
     </p>
     <Content />
   </article>
-  {post.data.bskyUri && <CommentSection client:load uri={post.data.bskyUri} />}
+  <CommentSection client:load bskyUri={post.data.bskyUri} mastodonUrl={post.data.mastodonUrl} />
 </BaseLayout>

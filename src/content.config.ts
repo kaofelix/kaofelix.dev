@@ -7,6 +7,7 @@ const posts = defineCollection({
     title: z.string(),
     pubDate: z.date().transform((date) => date.toISOString().slice(0, 10)),
     bskyUri: z.string().optional(),
+    mastodonUrl: z.string().optional(),
   }),
 });
 

@@ -1,51 +1,90 @@
 import Comment from "./Comment";
-import { bskyAppLink, type BlueskyPost } from "./post";
 import type { FC } from "preact/compat";
 import { useComments } from "./useComments";
 
 interface Props {
-  uri: string;
+  bskyUri?: string;
+  mastodonUrl?: string;
 }
 
-function replyThread(rootComment: BlueskyPost) {
-  let comment: BlueskyPost | undefined = rootComment;
-  let thread = [];
+export default function CommentSection({ bskyUri, mastodonUrl }: Props) {
+  const getCommentPrompt = () => {
+    if (bskyUri && mastodonUrl) {
+      return (
+        <>
+          Want to leave a comment? Reply on{" "}
+          <a
+            href={bskyAppLink(bskyUri)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-bold underline"
+          >
+            Bluesky
+          </a>{" "}
+          or{" "}
+          <a
+            href={mastodonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-bold underline"
+          >
+            Mastodon
+          </a>{" "}
+          and it will appear here
+        </>
+      );
+    } else if (bskyUri) {
+      return (
+        <>
+          Want to leave a comment? Reply on{" "}
+          <a
+            href={bskyAppLink(bskyUri)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-bold underline"
+          >
+            Bluesky
+          </a>{" "}
+          and it will appear here
+        </>
+      );
+    } else if (mastodonUrl) {
+      return (
+        <>
+          Want to leave a comment? Reply on{" "}
+          <a
+            href={mastodonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-bold underline"
+          >
+            Mastodon
+          </a>{" "}
+          and it will appear here
+        </>
+      );
+    }
+    return null;
+  };
 
-  while (true) {
-    comment = comment.replies && comment.replies[0];
-    if (!comment) break;
-    thread.push(comment);
-  }
-
-  return thread;
-}
-
-export default function CommentSection({ uri }: Props) {
   return (
     <section class="mt-20">
       <hr class="text-zinc-400 dark:text-zinc-600 mb-5" />
       <p class="text-xs md:text-sm text-center text-zinc-500 dark:text-zinc-400 mb-10">
-        Want to leave a comment? Reply to{" "}
-        <a
-          href={bskyAppLink(uri)}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-bold underline"
-        >
-          this post in Bluesky
-        </a>{" "}
-        and it will appear here
+        {getCommentPrompt()}
       </p>
-      <CommentList uri={uri} />
+      <CommentList bskyUri={bskyUri} mastodonUrl={mastodonUrl} />
     </section>
   );
 }
 
 interface CommentListProps {
-  uri: string;
+  bskyUri?: string;
+  mastodonUrl?: string;
 }
-const CommentList: FC<CommentListProps> = ({ uri }) => {
-  const { comments } = useComments(uri);
+
+const CommentList: FC<CommentListProps> = ({ bskyUri, mastodonUrl }) => {
+  const { comments } = useComments(bskyUri, mastodonUrl);
 
   if (!comments || comments.length == 0) {
     return null;
@@ -56,7 +95,7 @@ const CommentList: FC<CommentListProps> = ({ uri }) => {
       {comments.map((comment, index) => (
         <>
           <Comment comment={comment} />
-          {replyThread(comment).map((reply) => (
+          {comment.thread.map((reply) => (
             <Comment comment={reply} />
           ))}
           {index + 1 < comments.length && (
@@ -66,4 +105,10 @@ const CommentList: FC<CommentListProps> = ({ uri }) => {
       ))}
     </div>
   );
+};
+
+const bskyAppLink = (uri: string) => {
+  const postId = uri.split("/").pop();
+  const profile = uri.split("/")[2];
+  return `https://bsky.app/profile/${profile}/post/${postId}`;
 };
