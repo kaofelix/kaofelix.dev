@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler deploy"
+    "deploy": "astro build && wrangler deploy",
+    "upload-games": "node scripts/upload-games.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
