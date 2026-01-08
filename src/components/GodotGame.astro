@@ -1,0 +1,13 @@
+---
+const { gamePath, aspectRatio = "16 / 9" } = Astro.props;
+---
+
+<div class="w-full my-6">
+  <iframe
+    src={gamePath}
+    class="w-full border border-gray-300 rounded-lg"
+    style={`aspect-ratio: ${aspectRatio};`}
+    allow="fullscreen; autoplay"
+    allowfullscreen
+  ></iframe>
+</div>

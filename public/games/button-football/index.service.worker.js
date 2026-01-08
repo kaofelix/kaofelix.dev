@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1742398133|72021149797';
+const CACHE_VERSION = '1767870520|2811669644';
 /** @type {string} */
 const CACHE_PREFIX = 'Football of Butt-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
