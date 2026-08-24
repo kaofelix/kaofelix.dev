@@ -4,14 +4,26 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 const { title } = Astro.props;
+const siteName = "Kao's Page";
+const authorName = "Kao Félix";
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url.origin,
+);
 ---
 
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content={authorName} />
+    <meta
+      name="description"
+      content={`Personal blog and portfolio of ${authorName}`}
+    />
     <link rel="me" href="https://mastodon.online/@kaofelix" />
-    <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{title} | {siteName}</title>
   </head>
   <body
     class="max-w-4xl mx-auto px-10 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-300"

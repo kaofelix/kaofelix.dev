@@ -13,16 +13,25 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const authorName = "Kao Félix";
 ---
 
 <BaseLayout title={post.data.title}>
-  <article class="prose md:prose-lg prose-zinc dark:prose-invert">
-    <h1 class="text-4xl md:text-5xl !-mb-4 text-rose-600 dark:text-rose-500">
-      {post.data.title}
-    </h1>
-    <p class="mb-8 text-zinc-600 dark:text-zinc-500">
-      Published on: {post.data.pubDate}
-    </p>
+  <article
+    class="prose md:prose-lg prose-zinc dark:prose-invert"
+    data-pagefind-body
+  >
+    <header>
+      <h1
+        class="text-4xl md:text-5xl -mb-4 font-extrabold tracking-[-0.02em] leading-[1.05] text-balance text-rose-600 dark:text-rose-500"
+      >
+        {post.data.title}
+      </h1>
+      <p class="mb-8 text-zinc-600 dark:text-zinc-500">
+        By <span class="font-semibold">{authorName}</span> ·{" "}
+        <time datetime={post.data.pubDate}>{post.data.pubDate}</time>
+      </p>
+    </header>
     <Content />
   </article>
   <CommentSection
