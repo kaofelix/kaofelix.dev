@@ -11,14 +11,14 @@
   --hatch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' shape-rendering='crispEdges'%3E%3Crect y='5' width='1' height='1'/%3E%3Crect x='1' y='4' width='1' height='1'/%3E%3Crect x='2' y='3' width='1' height='1'/%3E%3Crect x='3' y='2' width='1' height='1'/%3E%3Crect x='4' y='1' width='1' height='1'/%3E%3Crect x='5' width='1' height='1'/%3E%3C/svg%3E");
 }
 @media (max-width:480px){#menubar .name{display:none!important}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#fff;--paper:#000;color-scheme:dark}}
-:root[data-theme="dark"]{--ink:#fff;--paper:#000;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e4e2dc;--paper:#161616;--desk-ink:#333;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#e4e2dc;--paper:#161616;--desk-ink:#333;color-scheme:dark}
 :root[data-theme="light"]{color-scheme:light}
 *,*::before,*::after{box-sizing:border-box}
 *,*::before,*::after{font-variant-ligatures:none!important}
 body{position:relative;background:var(--paper);color:var(--ink);font:400 18px/1.45 var(--body);overflow-x:hidden;background-attachment:local}
 /* the desk stays still while windows scroll over it, so a dither cannot shimmer */
-body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--ink);-webkit-mask:var(--desk) 0 0/8px 8px;mask:var(--desk) 0 0/8px 8px;pointer-events:none}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--desk-ink,var(--ink));-webkit-mask:var(--desk) 0 0/8px 8px;mask:var(--desk) 0 0/8px 8px;pointer-events:none}
 #page{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:60px 72px}
 .col{max-width:1120px;display:flex;flex-direction:column;gap:64px}
 h1,h2,h3{font-family:var(--px);font-weight:700;line-height:1.05;margin:0;text-wrap:balance}
