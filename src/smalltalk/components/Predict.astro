@@ -1,0 +1,15 @@
+---
+// Guess first: app.js turns `opts` into buttons and shows the reveal once one is picked.
+interface Props {
+  id: string;
+  opts: string[];
+  right: string;
+  hold?: string;
+}
+const { id, opts, right, hold } = Astro.props;
+---
+
+<div class="predict" data-id={id} data-opts={opts.join("|")} data-right={right} data-hold={hold}>
+  <p class="q"><slot name="q" /></p>
+  <div class="reveal" hidden><slot /></div>
+</div>

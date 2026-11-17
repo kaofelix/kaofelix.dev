@@ -1,0 +1,14 @@
+---
+// A numbered lesson: a prose window on the left, stage windows on the right.
+interface Props {
+  id: string;
+  n: number;
+}
+const { id, n } = Astro.props;
+---
+
+<section class="sec" id={id}>
+  <div class="prose win"><div class="tab">{n} of 9</div><div class="pad"><slot /></div></div>
+  <div class="stagecol"><slot name="stage" /></div>
+  <slot name="after" />
+</section>

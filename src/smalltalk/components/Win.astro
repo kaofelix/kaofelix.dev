@@ -1,0 +1,11 @@
+---
+// A titled window: the black tab sits on top of the frame.
+interface Props {
+  tab: string;
+  id?: string;
+  class?: string;
+}
+const { tab, id, class: extra } = Astro.props;
+---
+
+<div class:list={["win", extra]} id={id}><div class="tab">{tab}</div><slot /></div>

@@ -1,0 +1,412 @@
+---
+import BareLayout from "../../layouts/BareLayout.astro";
+import Section from "../../smalltalk/components/Section.astro";
+import Win from "../../smalltalk/components/Win.astro";
+import Predict from "../../smalltalk/components/Predict.astro";
+import Recall from "../../smalltalk/components/Recall.astro";
+import Why from "../../smalltalk/components/Why.astro";
+import "@fontsource/pixelify-sans/500.css";
+import "@fontsource/pixelify-sans/700.css";
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/400-italic.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
+import "@fontsource/atkinson-hyperlegible-mono/400.css";
+import "@fontsource/atkinson-hyperlegible-mono/500.css";
+import "../../smalltalk/style.css";
+---
+
+<BareLayout
+  title="Smalltalk, One Message at a Time"
+  edgeToEdge
+  description="An interactive Smalltalk-80 tutorial: send messages yourself, starting with Hello World and going down to the bytecodes a VM runs."
+>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <pattern id="svgD12" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" style="fill:var(--paper)"/><rect width="1" height="1" style="fill:var(--ink)"/></pattern>
+  <pattern id="svgHatch" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" style="fill:var(--paper)"/><path d="M0 6L6 0" style="stroke:var(--ink)" stroke-width="1"/></pattern>
+  <pattern id="svgWater" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" style="fill:var(--paper)"/><rect width="1" height="1" style="fill:var(--ink)"/><rect x="2" y="2" width="1" height="1" style="fill:var(--ink)"/></pattern>
+</defs></svg>
+
+<nav id="menubar" aria-label="Page menu">
+  <span class="name">Smalltalk, One Message at a Time</span>
+  <button class="mb" id="mb-contents" aria-expanded="false" aria-haspopup="true">Contents</button>
+  <button class="mb" id="mb-ledger" aria-expanded="false" aria-controls="ledger">Special: 7</button>
+  <button class="mb" id="mb-reverse">Invert colours</button>
+  <button class="mb" id="mb-reset">Undo</button>
+</nav>
+<div class="pop" id="contentsmenu" hidden></div>
+<aside class="win" id="ledger" aria-label="Special in your language"><div class="tab">Special in your language</div><ul class="ledgerrows" id="ledgerrows"></ul></aside>
+
+<div id="page"><main class="col">
+
+<div class="win" id="welcome" hidden><div class="pad">
+  <p class="q" id="welcome-text">Welcome back.</p>
+  <div class="btnrow"><button class="btn" id="welcome-quiz">Five questions</button><button class="btn" id="welcome-place">Pick up where you stopped</button></div>
+</div></div>
+
+<section id="hero" class="win" aria-labelledby="h-title">
+  <div class="tab">Workspace</div>
+  <div class="pad herogrid">
+    <h1 id="h-title">Smalltalk, One Message at a Time</h1>
+    <p class="tiny">Smalltalk-80 builds almost everything from objects sending messages to each other. This tutorial lets you run that idea yourself, starting with one send and going down to the bytecodes underneath.</p>
+    <div class="bench" id="bench">
+      <button class="slip heroslip" id="heroslip" aria-label="Send show: 'Hello, world' to the Transcript"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="1"/><rect x="1" y="12" width="14" height="1"/><rect x="1" y="3" width="1" height="10"/><rect x="14" y="3" width="1" height="10"/><rect x="3" y="5" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="5" y="7" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="7" y="9" width="2" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/></svg>show: 'Hello, world'</button>
+      <div class="herots" id="herots"><div class="tshead">Transcript</div><pre id="herots-text" aria-live="polite"></pre></div>
+    </div>
+    <p class="q" id="hero-do">Drag the message onto the Transcript.</p>
+    <div class="reveal" id="hero-mid" tabindex="-1" hidden>
+      <p>You ran <code>Transcript show: 'Hello, world'</code>. Transcript is an object that shows text in a window, and <code>show:</code> is a message it understands. This is Smalltalk's usual Hello World.</p>
+      <div class="badge">In Python, <code>print</code> is a function you call. Here you ask an object.</div>
+    </div>
+    <div class="bench bench2" id="bench2" hidden>
+      <div class="herocol"><div class="heroobj" id="hero-hello">'hello'</div><small id="hello-label">a String</small></div>
+      <button class="slip heroslip" id="heroslip2" aria-label="Send asUppercase to 'hello'"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="1"/><rect x="1" y="12" width="14" height="1"/><rect x="1" y="3" width="1" height="10"/><rect x="14" y="3" width="1" height="10"/><rect x="3" y="5" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="5" y="7" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="7" y="9" width="2" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/></svg>asUppercase</button>
+      <div class="herocol" id="answercol" hidden><div class="heroobj" id="hero-upper">'HELLO'</div><small>the answer</small></div>
+    </div>
+    <p class="q" id="hero-do2" hidden>Now drag <code>asUppercase</code> onto <code>'hello'</code>.</p>
+    <div class="reveal" id="hero-after" tabindex="-1" hidden>
+      <p><code>'hello'</code> answered with a new object, <code>'HELLO'</code>, and <code>'hello'</code> is still <code>'hello'</code>. <span class="pg">p. 167</span> You send a message and get an object back. Nearly all of Smalltalk works this way, and the page names the exceptions as they come up.</p>
+      <p class="tiny">Your language has keywords and operators built in. The Special list in the menu bar names seven, and you'll cross most of them off.</p>
+    </div>
+  </div>
+</section>
+
+<div class="part">Part one: Messages</div>
+
+<Section id="s1" n={1}>
+    <h2>Ask</h2>
+    <p>What you just did is called a send, and <code>show: 'Hello, world'</code> is the message. The object that gets it, <code>Transcript</code>, is the receiver. <code>show:</code> is the selector, which names the request, and <code>'Hello, world'</code> is an argument.</p>
+    <p>Think of a note slid under a door. Only the note gets in, and whoever is inside decides what to do with it. Unlike mail, you wait at the door for the answer. Kay pictured each object as a little computer on a network. <a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay 1993</a></p>
+    <Predict id="s1" opts={['14', '20']} right="20" hold="Now press Step and watch.">
+      <Fragment slot="q">What does <code>2 + 3 * 4</code> answer? Guess before you look.</Fragment>
+        <p>20. <code>+</code> and <code>*</code> are plain messages with the same rank, so they run left to right. <span class="pg">p. 28</span></p>
+        <div class="badge">Python and Java answer 14.</div>
+      </Predict>
+    <p>There are three kinds of message. <span class="pg">pp. 26-30</span></p>
+    <dl class="kinds">
+      <dt>Unary, a plain word</dt><dd><button class="chip" data-st="st1" data-src="'hello' size">'hello' size</button></dd>
+      <dt>Binary, punctuation</dt><dd><button class="chip" data-st="st1" data-src="'hello' , ' world'">'hello' , ' world'</button></dd>
+      <dt>Keyword, words with colons</dt><dd><button class="chip" data-st="st1" data-src="'hello' copyReplaceAll: 'l' with: 'L'">'hello' copyReplaceAll: 'l' with: 'L'</button></dd>
+    </dl>
+    <p>Unary messages run first, then binary, then keyword. <button class="chip" data-st="st1" data-src="'hello' size + 'world' size">'hello' size + 'world' size</button> runs both <code>size</code> sends before the <code>+</code>, and answers 10.</p>
+    <div class="btnrow"><button class="chip" data-st="st1" data-src="2 + (3 * 4)">2 + (3 * 4)</button><button class="chip" data-st="st1" data-src="3 squared + 1 max: 20">3 squared + 1 max: 20</button><button class="chip" data-st="st1" data-src="'hello' , ' world' copyReplaceAll: 'o' with: '0'">'hello' , ' world' copyReplaceAll: 'o' with: '0'</button></div>
+    <Why><Fragment slot="q">Why can't <code>*</code> outrank <code>+</code>?</Fragment>Anyone can define new punctuation messages. The language gives them all the same rank.</Why>
+  
+  <Fragment slot="stage"><Win tab="Stage: a send"><div id="st1"></div></Win></Fragment>
+</Section>
+
+<Section id="s2" n={2}>
+    <h2>It decides</h2>
+    <div class="recall"><p class="q">In <code>'hello' , ' world'</code>, which object receives <code>,</code>?</p>
+      <div class="tokrow" id="recall2"><button class="btn mono" data-a="1">'hello'</button><button class="btn mono">,</button><button class="btn mono">' world'</button></div>
+      <p class="ans" hidden><b><code>'hello'</code></b> receives it. <code>' world'</code> is the argument.</p></div>
+    <Predict id="s2" opts={['Before the program runs', 'When the message arrives']} right="When the message arrives">
+      <Fragment slot="q"><code>x size</code>. <code>x</code> could be a String, an Array, a Set or a Dictionary. When does Smalltalk check that <code>x</code> has a <code>size</code>?</Fragment>
+        <p>When the message arrives. Tap each receiver.</p>
+        <div class="badge">Java checks this at compile time. Python and JavaScript also look on arrival. In Smalltalk every operation goes through this lookup, <code>+</code> included.</div>
+      </Predict>
+    <p>Lookup starts in the receiver's class and moves up through superclasses. The sender never picks the method. The one exception is <code>super</code>, in section 5. <span class="pg">pp. 16, 61</span></p>
+    <p>Kay's short definition of object orientation is messaging, hidden state and very late binding. <a href="http://userpage.fu-berlin.de/~ram/pub/pub_jf47ht81Ht/doc_kay_oop_en">Kay 2003</a> Those four receivers showed you the late binding.</p>
+    <p class="tiny">Numbers work the same way. The stage's Expressions menu sends <code>+ 5</code> to <code>3</code>, <code>2.5</code> and <code>1@2</code>, a Point. Each runs a different <code>+</code>.</p>
+    <Why><Fragment slot="q">You add a <code>Complex</code> class. What must change for its <code>+</code> to work?</Fragment><code>Complex</code> brings its own <code>+</code>, and there's no central routine to edit. Ingalls makes this point about new number classes. <a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls 1981</a></Why>
+  
+  <Fragment slot="stage"><Win tab="Stage: size, four times">
+    <div class="pad" style="padding:12px 12px 0"><div class="recvrow" id="recv2"><span class="sendlbl" aria-hidden="true">send <code>size</code> to</span><button class="btn" id="r2-a" disabled>'hello'</button><button class="btn" id="r2-b" disabled>#(3 1 4 1 5)</button><button class="btn" id="r2-c" disabled>#(3 1 4 1 5) asSet</button><button class="btn" id="r2-d" disabled>opposites</button></div>
+    <p class="tiny"><code>#(3 1 4 1 5)</code> is a literal Array. <code>asSet</code> makes a Set from the Array. <code>opposites</code> holds the first three pairs of the book's Dictionary, starting with <code>opposites at: #hot put: #cold</code>. <span class="pg">pp. 21, 149</span></p>
+    <p class="q" id="r2-result" hidden>In this Smalltalk, three different methods ran. The Set answers 4 because it keeps one of each. The Dictionary has no <code>size</code> of its own, so the search went up to Set.</p></div>
+    <div id="st2"></div></Win></Fragment>
+</Section>
+
+<Section id="s3" n={3}>
+    <h2>Nobody home</h2>
+    <Recall><Fragment slot="q">A class has no match. Where does the search go?</Fragment><b>its superclass</b></Recall>
+    <Predict id="s3" opts={['The VM halts.', 'It answers nil.', 'Another message gets sent.']} right="Another message gets sent." hold="Now watch the stage.">
+      <Fragment slot="q"><code>'hello' shout</code> reaches the top with no match. What happens next?</Fragment><p>The system wraps your message in a Message object and sends <code>doesNotUnderstand:</code> to the same receiver. Object's method for it opens the notifier on the stage. <span class="pg">pp. 61, 589</span></p></Predict>
+    <p class="q">Give String the method. Press Create, write <code>shout ^ self asUppercase , '!'</code>, then Accept and Proceed.</p>
+    <button class="btn mono" id="try3" style="align-self:flex-start" disabled>'hello' shout</button>
+    <div class="reveal" id="s3done" hidden>
+      <p>The program kept its place while you wrote the method, then carried on from there.</p>
+      <p>Symbol is a subclass of String, so a Symbol finds your method too. <span class="pg">p. 168</span></p>
+      <button class="btn mono" id="try3b" style="align-self:flex-start">#hello shout</button>
+      <p class="tiny">Try a number too. Run <code>3 double</code>, and put the method on Number so that <code>2.5 double</code> finds it as well. Tap Number in the tower before you accept.</p>
+      <div class="btnrow"><button class="btn mono sm" id="try3c">3 double</button><button class="btn mono sm" id="try3d">2.5 double</button></div>
+    </div>
+    <Why><Fragment slot="q">A class can override <code>doesNotUnderstand:</code>. What could you build?</Fragment>A stand-in that logs each message or forwards it to another machine. <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a>, <a href="https://book.gtoolkit.com/overriding-doesnotunderstand--9x2unsyac7r92r0p3bligpxyk">GToolkit</a></Why>
+  
+  <Fragment slot="stage"><Win tab="Stage: no match"><div id="st3"></div></Win></Fragment>
+</Section>
+<p class="stopnote" id="stop1">You can stop here. <span class="savedline">Your place is saved in this browser.</span></p>
+
+<div class="part">Part two: Control flow and classes</div>
+
+<Section id="s4" n={4}>
+    <h2>No <code class="h2code">if</code>, no <code class="h2code">for</code></h2>
+    <Recall><Fragment slot="q">Which message reaches an object when lookup fails?</Fragment><b class="m">doesNotUnderstand:</b></Recall>
+    <p>A block is code in brackets. It waits until it receives <code>value</code>. <span class="pg">p. 31</span> Try <button class="chip" data-st="st4" data-src="['hello' asUppercase]">['hello' asUppercase]</button> and <button class="chip" data-st="st4" data-src="['hello' asUppercase] value">['hello' asUppercase] value</button>.</p>
+    <Predict id="s4" opts={['The compiler', 'The block', 'The object that came back']} right="The object that came back">
+      <Fragment slot="q"><code>3 &gt; 0</code> answers an object, and there is no <code>if</code> keyword. What decides whether the block runs?</Fragment><p>The object that came back. <code>true</code> and <code>false</code> are ordinary objects, so give each the method it needs.</p></Predict>
+    <div class="reveal" id="s4reveal" hidden>
+      <p>True runs the block and False ignores it, so ordinary lookup has given you a conditional. <span class="pg">p. 239</span> Nygard calls this his favourite bit of language design. <a href="https://michaelnygard.com/blog/2018/12/my-favorite-bit-of-language-design/">Nygard 2018</a></p>
+      <p>The labels on the stage are the same five steps as any other send: find receiver, evaluate arguments, look up, run, answer.</p>
+      <div class="badge">In Java, <code>if (x) &#123;...&#125;</code> is syntax. Here, <code>x ifTrue: [...]</code> is a message.</div>
+      <p class="honest">The real compiler turns this send into a jump for speed. You can still read it as a send, since it behaves the same for <code>true</code> and <code>false</code>. <span class="pg">pp. 550, 559</span></p>
+      <p>Loops are messages too. <button class="chip" data-st="st4" data-src="x := 0. [x < 3] whileTrue: [x := x + 1]. x">[x &lt; 3] whileTrue: [x := x + 1]</button></p>
+      <p>There is no <code>for</code> either. You hand a block to a collection, and the collection runs it once per element. <span class="pg">pp. 136-139</span></p>
+      <p><code>[:x | ...]</code> is a block that takes one argument, like <code>lambda x: ...</code> or <code>x =&gt; ...</code>. A <code>;</code> sends another message to the same receiver, so <code>Transcript print: x; cr</code> is two sends to Transcript. <span class="pg">pp. 30, 35</span></p>
+      <div class="btnrow">
+        <button class="chip" data-st="st4" data-src="#(3 1 4 1 5) do: [:x | Transcript print: x; cr]">#(3 1 4 1 5) do: [:x | Transcript print: x; cr]</button>
+        <button class="chip" data-st="st4" data-src="#(3 1 4 1 5) collect: [:x | x * x]">#(3 1 4 1 5) collect: [:x | x * x]</button>
+        <button class="chip" data-st="st4" data-src="#(3 1 4 1 5) select: [:x | x > 2]">#(3 1 4 1 5) select: [:x | x &gt; 2]</button>
+        <button class="chip" data-st="st4" data-src="#(3 1 4 1 5) inject: 0 into: [:sum :x | sum + x]">#(3 1 4 1 5) inject: 0 into: [:sum :x | sum + x]</button>
+        <button class="chip" data-st="st4" data-src="'hello' select: [:c | c isVowel]">'hello' select: [:c | c isVowel]</button>
+      </div>
+      <p><code>collect:</code> and <code>select:</code> answer a new collection of the receiver's kind, so the Array gives an Array and the String gives a String. <span class="pg">p. 136</span> An Array prints as <code>(9 1 16 1 25 )</code>, without its class name. <span class="pg">pp. 218-219</span></p>
+      <div class="badge">In Python, <code>for x in items:</code> is syntax. Here, <code>items do: [:x | ...]</code> is a message to the collection.</div>
+      <p>Counting is a message to a number: <button class="chip" data-st="st4" data-src="1 to: 3 do: [:i | Transcript print: i; cr]">1 to: 3 do: [:i | Transcript print: i; cr]</button></p>
+    </div>
+    <Why><Fragment slot="q">Why must the argument be a block?</Fragment>Arguments are evaluated before the send. A block delays its code so the receiver can choose.</Why>
+  
+  <Fragment slot="stage">
+    <Win tab="Puzzle: two methods">
+      <p class="tiny" id="puzzle-wait" style="padding:14px 12px">Two empty methods wait here. Make your guess first.</p>
+      <div class="puzzle" id="puzzle" hidden>
+      <p class="tiny"><code>True &gt;&gt; ifTrue:</code> means the <code>ifTrue:</code> method in class True. <code>^</code> means answer this.</p>
+      <div class="pmethods">
+        <div class="pmeth"><header>True &gt;&gt; ifTrue: aBlock</header><button class="pslot" id="slot-true" aria-label="Slot in True, ifTrue:"></button></div>
+        <div class="pmeth"><header>False &gt;&gt; ifTrue: aBlock</header><button class="pslot" id="slot-false" aria-label="Slot in False, ifTrue:"></button></div>
+      </div>
+      <div class="ptiles"><button class="ptile" id="tile-value">^ aBlock value</button><button class="ptile" id="tile-nil">^ nil</button></div>
+      <div class="btnrow"><button class="btn mono sm" id="runp1" disabled>3 &gt; 0 ifTrue: ['yes']</button><button class="btn mono sm" id="runp2" disabled>3 &lt; 0 ifTrue: ['yes']</button></div>
+      <p class="tiny" id="pmsg" hidden>That ran backwards. Swap them and run again.</p>
+      <button class="link sm" id="phint" hidden>One of them runs the block. One doesn't.</button>
+    </div></Win>
+    <Win tab="Stage: blocks"><div id="st4"></div></Win>
+  </Fragment>
+</Section>
+
+<Section id="s5" n={5}>
+    <h2>Who is self</h2>
+    <Recall><Fragment slot="q">What does <code>false</code> answer to <code>ifTrue:</code>?</Fragment><b class="m">nil</b></Recall>
+    <p><code>self</code> and <code>super</code> both mean the receiver. They differ in where the search starts. <code>self</code> starts in the receiver's own class. <code>super</code> starts above the class holding the running method. <span class="pg">pp. 62-65</span></p>
+    <div class="badge">This is close to <code>this</code> and <code>super</code> in Java, or <code>self</code> and <code>super()</code> in Python. Nothing checks these sends in advance, though.</div>
+    <div class="btnrow"><button class="btn mono sm" id="w5a">example4 result1</button><button class="btn mono sm" id="w5b">example4 result2</button></div>
+    <p class="tiny">Both answer 4. <span class="pg">p. 64</span> Step through each one.</p>
+    <Predict id="s5" opts={['2', '4']} right="2" hold="Now press Step and watch.">
+      <Fragment slot="q">A Four runs <code>result3</code>, which says <code>super test</code>. What comes back?</Fragment><p>2, the number. <code>result3</code> lives in Three, so <code>super</code> starts at Two, and Four's <code>test</code> is never seen. <span class="pg">pp. 64-65</span></p></Predict>
+    <Why><Fragment slot="q">Why start from the method's class and not the receiver's?</Fragment>Starting from the receiver's class could find the same method again and loop forever. <i>We worked this out. The book doesn't say.</i></Why>
+  
+  <Fragment slot="stage">
+    <Win tab="The four classes"><div class="fourcls">
+      <div><b>One</b><code>test ^ 1</code><code>result1 ^ self test</code></div>
+      <div><b>Two, under One</b><code>test ^ 2</code></div>
+      <div><b>Three, under Two</b><code>result2 ^ self result1</code><code>result3 ^ super test</code></div>
+      <div><b>Four, under Three</b><code>test ^ 4</code></div>
+    </div><p class="tiny" style="padding:0 12px 12px"><code>example4</code> is a Four. <span class="pg">pp. 62-64</span></p></Win>
+    <Win tab="Stage: One, Two, Three, Four"><div id="st5"></div></Win>
+  </Fragment>
+</Section>
+
+<Section id="s6" n={6}>
+    <h2>Classes answer too</h2>
+    <div class="btnrow"><span class="tiny">Optional on a first pass.</span><a class="btn" id="skip6" href="#s7" style="display:inline-flex;align-items:center;text-decoration:none">Skip</a></div>
+    <Recall><Fragment slot="q">Where does <code>super</code> start?</Fragment><b>above the class holding the running method</b></Recall>
+    <Predict id="s6" opts={['You reach nil.', 'A new class every time, forever.', 'You come back to one you already visited.']} right="You come back to one you already visited.">
+      <Fragment slot="q">Send <code>class</code> to <code>3</code>, then to the answer, again and again. What happens?</Fragment><p>You come back around. Metaclass class is an instance of Metaclass. <span class="pg">p. 270</span> In Python, <code>type(type) is type</code> is the same kind of loop.</p></Predict>
+    <p>Making an object is a send too. <button class="chip" data-st="st6" data-src="OrderedCollection new">OrderedCollection new</button> asks the class OrderedCollection for a new instance, which you can then fill: <button class="chip" data-st="st6" data-src="OrderedCollection new add: 3; add: 4; yourself">OrderedCollection new add: 3; add: 4; yourself</button></p>
+    <p class="tiny"><code>add:</code> answers the thing added, not the collection, so <code>yourself</code> at the end asks for the collection back. <span class="pg">p. 218</span></p>
+    <p>And you can ask any object for its class: <button class="chip" data-st="st6" data-src="'hello' class">'hello' class</button> answers String, an object that receives messages like any other.</p>
+    <p>A class is an object, so it has a class too, called its metaclass. Methods on the class itself live there. This is why <code>Point</code> answers <code>x:y:</code> and <code>3</code> does not. <span class="pg">pp. 76-79, 269</span></p>
+    <div class="badge"><code>OrderedCollection new</code> and <code>Point x: 1 y: 2</code> look like Java's <code>new</code> and a static call. Both are ordinary sends to an object, so they can be inherited and overridden.</div>
+    <Why><Fragment slot="q">Why one metaclass per class?</Fragment>Classes need different messages. When all classes shared one, they all had one protocol. <span class="pg">pp. 76-77</span></Why>
+  
+  <Fragment slot="stage">
+    <Win tab="Map: who is an instance of what">
+      <div class="mapwrap" id="mapwrap"></div>
+      <div class="legend"><span><i></i>superclass</span><span><i class="d"></i>instance of</span><span>Tap any box to ask for its class. Not every link is drawn.</span></div>
+      <div class="pad" style="padding:0 12px 12px;gap:8px"><button class="btn" id="sendclass" disabled style="align-self:flex-start">Send class</button><p class="trail" id="trail">3</p></div>
+    </Win>
+    <Win tab="Stage: sends to a class"><div id="st6"></div></Win>
+  </Fragment>
+</Section>
+<p class="stopnote" id="stop2">You can stop here too.</p>
+
+<div class="part">Part three: The machine and daily habits</div>
+
+<Section id="s7" n={7}>
+    <h2>Below the objects</h2>
+    <Recall><Fragment slot="q">In <code>'hello' size</code>, who picks the code for <code>size</code>?</Fragment><b>the class of <code>'hello'</code></b>, String</Recall>
+    <p>Smalltalk compiles each method to bytecodes, much as Java compiles to .class files and Python to .pyc. The virtual machine (VM) is the program that runs them. The book compiles Rectangle <code>center</code> to these six bytes: three pushes, two sends and a return. The VM's loop fetches a byte, advances, and performs it. <span class="pg">pp. 543, 551</span></p>
+    <p>Each method that runs gets a new context (a stack frame), an ordinary object holding sender, receiver, method, temporaries and stack. A primitive is a method the VM carries out itself, in machine code, so it needs no context. The debugger is plain Smalltalk code that reads those objects. <span class="pg">pp. 581, 609, 612</span> <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a></p>
+    <Predict id="s7b" opts={['Yes', 'No']} right="Yes">
+      <Fragment slot="q">Can you send a message to the stack frame that's running right now?</Fragment>
+        <p>Yes. Run <button class="chip" data-st="st7" data-src="thisContext receiver">thisContext receiver</button> and watch.</p>
+        <p>Every stage above now has a Machine button that shows the same send from the VM's side.</p>
+      </Predict>
+    <Why><Fragment slot="q">Why does the sender's context stay around while a method runs?</Fragment>The answer comes back to it, and the run resumes there. Sends are synchronous.</Why>
+  
+  <Fragment slot="stage">
+    <Win tab="Rectangle center, in bytes" id="bytewin"><div class="bytes" id="bytes"></div></Win>
+    <Win tab="Stage: the same send, one level up"><div id="st7"></div></Win>
+  </Fragment>
+  <Fragment slot="after">
+  <Predict id="s7" opts={['It adds.', 'It sends.']} right="It sends." hold="Now press Step and watch.">
+      <Fragment slot="q">176 is the shortcut for <code>+</code>. Does the VM add here?</Fragment><p>It sends. The shortcut works only for a SmallInteger receiver, and this receiver is a Point. <span class="pg">worked out from pp. 618-619</span></p></Predict>
+  </Fragment>
+</Section>
+
+<Section id="s8" n={8}>
+    <h2>The short list</h2>
+    <p>Look at your Special list. <code>:=</code> and <code>^</code> stay on it. Everything else turned out to be objects and messages.</p>
+    <p>Files, the display, the compiler and the debugger are objects too. Under them is a thin layer of about 100 primitives. <span class="pg">pp. 52, 543, 563</span> <a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls 1981</a></p>
+    <div class="reveal" id="s8done" hidden><p>Ingalls wanted a system one person could understand, which is why this list is so short. <a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls 1981</a></p></div>
+  
+  <Fragment slot="stage">
+    <Win tab="Which of these send? Sort each one."><div class="flips" id="flips"></div></Win>
+    <Win tab="Your list now"><ul class="ledgerrows final" id="ledger-final"></ul></Win>
+    <Win tab="The usual stack"><div class="pad" style="padding:12px">
+      <div class="stackbox" id="stackbox"></div>
+      <button class="btn" id="downbtn" style="align-self:flex-start">Send it all the way down</button>
+    </div></Win>
+  </Fragment>
+</Section>
+
+<section id="s9" style="scroll-margin-top:60px">
+  <div class="win browser" style="margin-top:24px"><div class="tab">9 of 9</div>
+    <div class="habits" id="habits" role="tablist" aria-label="Six habits"></div>
+    <div class="habitpane">
+      <h2>Wield it</h2>
+      <p>Six habits, starting with the one to try first.</p>
+      <div id="habitcopy" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div id="habitextra" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div class="win habstage" id="habstagewin"><div id="st9"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="win" id="guesses" style="margin-top:24px"><div class="tab">Your guesses</div><div class="pad">
+  <p class="q">These aren't scored.</p>
+  <div class="guesses" id="guesslist"></div>
+  <button class="btn" id="forget" style="align-self:flex-start">Forget my guesses</button>
+</div></section>
+
+
+<section class="win" id="tomorrow"><div class="tab">Come back tomorrow</div><div class="pad">
+  <p>Try these from memory in about a day. Spacing them out helps you keep them.</p>
+  <div id="quizwait" hidden><p class="q">The five questions appear here tomorrow.</p><button class="link sm" id="quiznow">Show them anyway</button></div>
+  <div id="quiz" class="quiz">
+    <Recall><Fragment slot="q"><code>3 + 4 * 2</code> answers what?</Fragment><b>14</b>, left to right.</Recall>
+    <Recall><Fragment slot="q">What does <code>#(3 1 4) collect: [:x | x * 2]</code> answer, and what happens to <code>#(3 1 4)</code>?</Fragment><b class="m">(6 2 8 )</b>, a new Array. The original is unchanged.</Recall>
+    <Recall><Fragment slot="q"><code>'hello'</code> gets a message nothing defines. What arrives next, and where?</Fragment><b class="m">doesNotUnderstand:</b>, at the same String.</Recall>
+    <Recall><Fragment slot="q">A method in Three says <code>super test</code>, and the receiver is a Four. Where does the search start?</Fragment><b>Two</b>, above the class holding the method.</Recall>
+    <Recall><Fragment slot="q">If you read section 6: what is <code>3 class class class</code>?</Fragment><b class="m">Metaclass</b></Recall>
+  </div>
+</div></section>
+
+<details class="win fold" id="stories" open><summary>Stories</summary><div class="pad">
+  <div style="position:relative"><button class="btn" id="storypick" aria-haspopup="true" aria-expanded="false">Stories: Look at the gaps &#9662;</button></div>
+  <div id="story-gaps" class="story">
+    <canvas id="gaps" width="320" height="200" role="img" aria-label="Twelve objects with messages passing between them"></canvas>
+    <input type="range" id="gapslider" min="0" max="100" value="0" aria-label="From the things to the between">
+    <div class="slideends"><span>the things</span><span>the between</span></div>
+    <p>Kay later regretted the word objects, since it pulled attention off messaging. He pointed at the space between things. <a href="http://lists.squeakfoundation.org/pipermail/squeak-dev/1998-October/017019.html">Kay 1998</a></p>
+  </div>
+  <div id="story-bet" class="story" hidden><p>Kay claimed the most powerful language could fit on a page. Ingalls and Kaehler told Kay to show it. Kay got up at 4am for two weeks, and it just about fit. <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a>, <a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay 1993</a></p></div>
+  <div id="story-first" class="story" hidden><p>Ingalls remembers its first program as <code>6 factorial</code>. Kay remembers <code>3 + 4</code>, very slowly. <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a>, <a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay 1993</a></p><button class="btn" id="try6" style="margin-top:8px">Try 6 factorial.</button><div id="stStory" style="margin-top:8px"></div></div>
+  <div id="story-word" class="story" hidden><p>Jobs asked for smooth scrolling. Ingalls reports rearranging a couple of methods over lunch, then changing <code>delta</code> to <code>delta asFloat</code>. <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a></p></div>
+  <div id="story-kids" class="story" hidden><p>Marian Goldeen, 12, and Bruce Horn, 15, built a paint system and a music capture tool. <a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay 1993</a></p></div>
+  <div id="story-off" class="story" hidden><p>Beck's Smalltalk test framework led to JUnit, first written on a flight with Erich Gamma. <a href="https://martinfowler.com/bliki/Xunit.html">Fowler 2006</a> CRC cards came from passing on Smalltalk knowledge. <a href="https://www.cs.unc.edu/~stotts/COMP145/CRC/crc.html">UNC notes</a></p></div>
+</div></details>
+
+<details class="win fold" id="short"><summary>Where it falls short</summary><div class="pad">
+  <ul class="plain">
+    <li><p>Kay says messaging was never finished at PARC, and that treating Smalltalk as finished was a mistake. <a href="http://lists.squeakfoundation.org/pipermail/squeak-dev/1998-October/017019.html">Kay 1998</a></p></li>
+    <li><p>Kay also says inheritance is hard for novices and experts, and that no child programmed in Smalltalk after Smalltalk-76. <a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay 1993</a></p></li>
+    <li><p>The image is a saved snapshot of every live object. Code was hard to separate from that heap, so shipping was hard. With no plain source syntax, ordinary version control was hard too. <a href="https://gbracha.blogspot.com/2020/05/bits-of-history-words-of-advice.html">Bracha 2020</a> Wirfs-Brock says tools like Envy solved much of this. <a href="https://wirfs-brock.com/allen/posts/914">Wirfs-Brock 2020</a></p></li>
+    <li><p>Why it lost the market is mostly a business story, and insiders disagree on it. <a href="https://gbracha.blogspot.com/2020/05/bits-of-history-words-of-advice.html">Bracha 2020</a>, <a href="https://wirfs-brock.com/allen/posts/914">Wirfs-Brock 2020</a>, <a href="https://lists.squeakfoundation.org/pipermail/beginners/2009-November/006616.html">Johnson 2009</a></p></li>
+    <li><p><code>2 + 3 * 4</code> answering 20 surprises anyone who knows school arithmetic. Parsia is one of those who call it good for learners. <a href="https://lists.squeakfoundation.org/pipermail/squeak-dev/2000-June/006298.html">Parsia 2000</a></p></li>
+    <li><p>Live programming wasn't unique to Smalltalk. APL and Lisp had it. <a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls 2020</a></p></li>
+  </ul>
+</div></details>
+
+<details class="win fold" id="why"><summary>The learning research behind this page</summary><div class="pad">
+  <svg id="glasses" viewBox="0 -34 420 238" role="img" aria-label="A wide glass of water, a tall empty glass and a card"></svg>
+  <div class="btnrow"><button class="btn" id="gl-pour">Pour.</button><button class="btn" id="gl-cover" disabled>Cover.</button><button class="btn" id="gl-lift" disabled>Lift.</button></div>
+  <p>This is Bruner's test, as Kay tells it. Doing, seeing and reasoning can give different answers, which is why this page has you drag, then watch, then read. <a href="https://www.dgsiegel.net/files/refs/Kay%20-%20User%20Interface:%20A%20Personal%20View.pdf">Kay 1989</a></p>
+  <ul class="plain">
+    <li><p>Guessing before the answer helps, and learners rarely notice that it does. <a href="https://sc-pan.github.io/pdf/PR_2023.pdf">Pan and Rivers 2023</a></p></li>
+    <li><p>Prompts to explain improve learning, hence the "why" questions. <a href="https://www.gwern.net/doc/psychology/spaced-repetition/2018-bisra.pdf">Bisra et al. 2018</a></p></li>
+    <li><p>Every send uses the same five labels, following Margulieux et al. 2020.</p></li>
+    <li><p>Sorva 2013 argues a working model of the machine is worth teaching outright.</p></li>
+    <li><p>Threshold ideas put you in a state of uncertainty before they settle. <a href="https://par.nsf.gov/servlets/purl/10649480">Mackay and McSkimming 2024</a></p></li>
+    <li><p>Most of this evidence comes from other subjects, and none of it tests Smalltalk.</p></li>
+  </ul>
+</div></details>
+
+<details class="win fold" id="notes"><summary>What this little Smalltalk leaves out</summary><div class="pad">
+  <p>It walks a parsed tree. Only section 7 runs real bytes, and those are a fixed table from the book.</p>
+  <p>Machine view elsewhere is a model.</p>
+  <p>Create, and the re-send on Proceed, are ours. The book only says the user is notified. <span class="pg">pp. 61, 589</span></p>
+  <p>Conditionals are always real sends here. So <code>3 ifTrue: [...]</code> raises <code>doesNotUnderstand:</code>, where the real system sends <code>mustBeBoolean</code>.</p>
+  <p>Large integers lose digits and print as floats, where the real system moves to LargePositiveInteger. <span class="pg">p. 614</span> <code>7 / 2</code> gives 3.5, with no Fractions.</p>
+  <p>No radix or exponent literals, so <code>16r1F</code> and <code>1e3</code> won't parse. Inside a literal array, <code>true</code>, <code>false</code> and <code>nil</code> read as symbols.</p>
+  <p><code>+</code> uses double dispatch from Beck. Smalltalk-80's own coercion is different.</p>
+  <p>Blocks are closures named Block, where the book has BlockContext sharing its home's temporaries.</p>
+  <p><code>whileTrue:</code> is our own code and grows the stack.</p>
+  <p><code>do:</code>, <code>keysDo:</code> and <code>associationsDo:</code> are primitives here, so a trace stays short. In the real system they're Smalltalk methods. <code>collect:</code>, <code>select:</code>, <code>inject:into:</code> and <code>detect:ifNone:</code> are written in Smalltalk on top of <code>do:</code>, as the book describes.</p>
+  <p>Contexts are read-only.</p>
+  <p>The class tree is trimmed. There's no Bag, Interval, SortedCollection or Stream, Association sits directly under Object, and <code>subclass:instanceVariableNames:</code> is a shortened selector.</p>
+  <p>Point's methods are our versions, and so are the collection methods. A Set puts small integers and characters in order of value, as a real one's hashing would, and keeps other elements in the order added. A Dictionary's <code>collect:</code> answers an OrderedCollection, where the book's answers a Bag.</p>
+  <p>Results print the way the book describes. A string keeps its quotes, a symbol prints bare, so <code>#foo</code> shows <code>foo</code> <span class="pg">pp. 101, 168, 219</span>, and a collection prints its class name and elements <span class="pg">p. 218</span>. An Array prints as <code>(1 2 3 )</code>, with no class name <span class="pg">pp. 218-219</span>. Message slips on the stage keep the <code>#</code>, as you'd type it.</p>
+  <p>The Transcript is a plain text pane under Object. In Smalltalk-80 it is a kind of WriteStream, and it belongs to the programming environment, which the Blue Book doesn't describe.</p>
+  <p>No processes, <code>become:</code>, garbage collector or method cache.</p>
+  <p>We write <code>:=</code> and <code>^</code> where the book prints arrows <span class="pg">pp. 22, 50</span>.</p>
+</div></details>
+
+<details class="win fold" id="sources"><summary>Sources and notes</summary><div class="pad">
+  <p>Goldberg and Robson, Smalltalk-80: The Language and its Implementation, 1983. Page numbers on this page are printed pages. <i>Worked out</i> means we derived it from the book's rules.</p>
+  <p>The Transcript is part of the Smalltalk-80 programming environment, described in Goldberg, Smalltalk-80: The Interactive Programming Environment (1984), not in the Blue Book.</p>
+  <div class="sources">
+    <div><h3>Smalltalk</h3><ul>
+      <li><a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls, Design Principles Behind Smalltalk, BYTE, 1981</a></li>
+      <li><a href="https://smalltalkzoo.computerhistory.org/papers/EvolutionOfSmalltalk.pdf">Ingalls, The Evolution of Smalltalk, HOPL, 2020</a></li>
+      <li><a href="https://worrydream.com/EarlyHistoryOfSmalltalk/">Kay, The Early History of Smalltalk, 1993</a></li>
+      <li><a href="http://lists.squeakfoundation.org/pipermail/squeak-dev/1998-October/017019.html">Kay, Squeak list email, 1998</a></li>
+      <li><a href="http://userpage.fu-berlin.de/~ram/pub/pub_jf47ht81Ht/doc_kay_oop_en">Kay, email to Stefan Ram, 2003</a></li>
+      <li><a href="https://www.dgsiegel.net/files/refs/Kay%20-%20User%20Interface:%20A%20Personal%20View.pdf">Kay, User Interface: A Personal View, 1989</a></li>
+      <li><a href="https://stephaneducasse.github.io/freebooks/BestSmalltalkPractices/Smalltalkbestpracticepatterns-BeckKent--1997--PrenticeHall--9780132852104.pdf">Beck, Smalltalk Best Practice Patterns, 1997</a></li>
+      <li><a href="https://michaelnygard.com/blog/2018/12/my-favorite-bit-of-language-design/">Nygard, My Favorite Bit of Language Design, 2018</a></li>
+      <li><a href="https://gbracha.blogspot.com/2020/05/bits-of-history-words-of-advice.html">Bracha, Bits of History, Words of Advice, 2020</a></li>
+      <li><a href="https://wirfs-brock.com/allen/posts/914">Wirfs-Brock, 2020</a></li>
+      <li><a href="https://lists.squeakfoundation.org/pipermail/beginners/2009-November/006616.html">Johnson, Squeak list, 2009</a></li>
+      <li><a href="https://lists.squeakfoundation.org/pipermail/squeak-dev/2000-June/006298.html">Parsia, Squeak list, 2000</a></li>
+      <li><a href="https://martinfowler.com/bliki/Xunit.html">Fowler, Xunit, 2006</a></li>
+      <li><a href="https://book.gtoolkit.com/overriding-doesnotunderstand--9x2unsyac7r92r0p3bligpxyk">GToolkit book, doesNotUnderstand</a></li>
+      <li><a href="https://www.cs.unc.edu/~stotts/COMP145/CRC/crc.html">UNC notes on CRC cards</a></li>
+      <li><a href="https://smalltalkzoo.computerhistory.org/">Run the real thing, Smalltalk Zoo</a></li>
+    </ul></div>
+    <div><h3>Learning</h3><ul>
+      <li><a href="https://sc-pan.github.io/pdf/PR_2023.pdf">Pan and Rivers 2023</a></li>
+      <li><a href="https://www.gwern.net/doc/psychology/spaced-repetition/2018-bisra.pdf">Bisra et al. 2018</a></li>
+      <li><a href="https://par.nsf.gov/servlets/purl/10649480">Mackay and McSkimming 2024</a></li>
+    </ul>
+    <h3 style="margin-top:14px">Further reading, not cited above</h3><ul>
+      <li><a href="https://www.newmediareader.com/book_samples/nmr-26-kay.pdf">Kay and Goldberg, Personal Dynamic Media, 1977</a></li>
+      <li><a href="https://access.archive-ouverte.unige.ch/access/metadata/75bf6876-cb91-4e2c-8ac6-9d0767449449/download">Berney and Betrancourt 2016</a></li>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2864034">Cowan 2010</a></li>
+      <li><a href="https://groups.psych.northwestern.edu/gentner/papers/Gentner83.2b.pdf">Gentner 1983</a></li>
+      <li><a href="https://www.timeshighereducation.com/campus/using-productive-failure-activate-deeper-learning">Kapur 2021</a></li>
+      <li><a href="https://www.frontiersin.org/articles/10.3389/feduc.2021.581216/full">Donoghue and Hattie 2021</a></li>
+      <li><a href="http://worrydream.com/LearnableProgramming/">Victor, Learnable Programming, 2012</a></li>
+      <li><a href="https://worrydream.com/ExplorableExplanations/">Victor, Explorable Explanations, 2011</a></li>
+    </ul>
+    <h3 style="margin-top:14px">Read only as abstracts</h3>
+    <p class="tiny" style="margin-top:6px">Sorva 2013; du Boulay 1986; Margulieux, Morrison and Decker 2020; Mayer 2017; Chen, Kalyuga and Sweller 2015; Naps et al. 2002; Tshukudu and Cutts 2020; Holland, Griffiths and Woodman 1997; Haaranen et al. 2015; Spiro et al. 1989; Sinha and Kapur 2021.</p></div>
+  </div>
+  <p class="tiny">Most web sources were read through a summarising tool, so wording here is paraphrase. Check the originals before quoting them.</p>
+</div></details>
+
+</main></div>
+</BareLayout>
+
+<script>
+  import "../../smalltalk/app.js";
+</script>

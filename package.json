@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "astro build && wrangler deploy",
-    "upload-games": "node scripts/upload-games.mjs"
+    "upload-games": "node scripts/upload-games.mjs",
+    "test": "node --test 'src/smalltalk/*.test.js'"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.4.8",
@@ -17,6 +18,9 @@
     "@astrojs/mdx": "^8.1.6",
     "@astrojs/preact": "^6.1.6",
     "@fontsource-variable/m-plus-2": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible-mono": "^5.3.0",
+    "@fontsource/pixelify-sans": "^5.3.0",
     "@tailwindcss/vite": "^4.3.5",
     "astro": "^7.4.12",
     "astro-icon": "^1.2.0",

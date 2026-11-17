@@ -7,7 +7,8 @@ integrations. Use Node.js **22.23.4 or newer** and npm **9.6.5 or newer** locall
 and in the build environment. Install reproducibly with `npm ci`.
 
 - Run `npm run check` for Astro/TypeScript diagnostics and `npm run build` for the
-  production build. There is no separate test suite or lint command.
+  production build. `npm test` runs the Smalltalk tutorial's interpreter and
+  page-example tests (`src/smalltalk/*.test.js`). There is no lint command.
 - `npm run dev` runs Astro directly on `http://localhost:4321` with hot
   reloading (no preliminary build), using the Cloudflare Workers runtime.
 - `npm run preview` previews a production build in the Workers runtime. Stop it
