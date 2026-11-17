@@ -1,0 +1,60 @@
+---
+// The document shell every page shares: head metadata only, no styles or chrome.
+// Pages with their own design use it directly; BaseLayout adds the blog look on top.
+interface Props {
+  title: string;
+  /** Title for link previews, when it should differ from the document title. */
+  socialTitle?: string;
+  description?: string;
+  htmlClass?: string;
+  bodyClass?: string;
+  /** Let the page draw under the notch; only for pages that pad with safe-area insets. */
+  edgeToEdge?: boolean;
+}
+
+const {
+  title,
+  socialTitle = title,
+  description = "Personal blog and portfolio of Kao Félix",
+  htmlClass,
+  bodyClass,
+  edgeToEdge = false,
+} = Astro.props;
+const viewport =
+  "width=device-width, initial-scale=1.0" +
+  (edgeToEdge ? ", viewport-fit=cover" : "");
+const authorName = "Kao Félix";
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url.origin,
+);
+---
+
+<html lang="en" class={htmlClass}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content={viewport} />
+    <meta name="author" content={authorName} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="me" href="https://mastodon.online/@kaofelix" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{title}</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={socialTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <slot />
+  </body>
+</html>
