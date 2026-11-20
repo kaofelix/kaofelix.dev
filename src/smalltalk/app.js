@@ -38,14 +38,14 @@ import { RM, esc, $, $$, SLIPGLYPH, Store, saveImage, applyHighlight, closeMenu,
   }).join('');
   function renderLedger(fresh) {
     $('#ledgerrows').innerHTML = ledgerHTML(false); $('#ledger-final').innerHTML = ledgerHTML(true);
-    $('#mb-ledger').textContent = 'Special: ' + LEDGER.filter(r => !flipped[r.k]).length;
+    $('#mb-ledger').textContent = 'Built-ins: ' + LEDGER.filter(r => !flipped[r.k]).length;
     if (fresh) $$(`li[data-k="${fresh}"]`).forEach(li => { li.classList.add('hl'); setTimeout(() => li.classList.remove('hl'), 1800); });
   }
   function flip(k) {
     if (flipped[k]) return;
     const r = LEDGER.find(x => x.k === k);
     flipped[k] = true; Store.set('ledger', flipped); renderLedger(k);
-    toast(`Off your Special list: ${r.c}. It's ${r.d}.`);
+    toast(`Off your Built-ins list: ${r.c}. In Smalltalk it's ${r.d}.`);
   }
   renderLedger();
   (function ledgerMenu() {

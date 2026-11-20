@@ -29,12 +29,12 @@ import "../../smalltalk/style.css";
 <nav id="menubar" aria-label="Page menu">
   <span class="name">Smalltalk, One Message at a Time</span>
   <button class="mb" id="mb-contents" aria-expanded="false" aria-haspopup="true">Contents</button>
-  <button class="mb" id="mb-ledger" aria-expanded="false" aria-controls="ledger">Special: 7</button>
+  <button class="mb" id="mb-ledger" aria-expanded="false" aria-controls="ledger">Built-ins: 7</button>
   <button class="mb" id="mb-reverse">Invert colours</button>
   <button class="mb" id="mb-reset">Undo</button>
 </nav>
 <div class="pop" id="contentsmenu" hidden></div>
-<aside class="win" id="ledger" aria-label="Special in your language"><div class="tab">Special in your language</div><ul class="ledgerrows" id="ledgerrows"></ul></aside>
+<aside class="win" id="ledger" aria-label="Built into most languages"><div class="tab">Built into most languages</div><p class="ledgernote">Keywords and operators that Python, JavaScript or Java build in. As you read, each one flips to show what Smalltalk does instead.</p><ul class="ledgerrows" id="ledgerrows"></ul></aside>
 
 <div id="page"><main class="col">
 
@@ -65,7 +65,7 @@ import "../../smalltalk/style.css";
     <p class="q" id="hero-do2" hidden>Now drag <code>asUppercase</code> onto <code>'hello'</code>.</p>
     <div class="reveal" id="hero-after" tabindex="-1" hidden>
       <p><code>'hello'</code> answered with a new object, <code>'HELLO'</code>, and <code>'hello'</code> is still <code>'hello'</code>. <span class="pg">p. 167</span> You send a message and get an object back. Nearly all of Smalltalk works this way, and the page names the exceptions as they come up.</p>
-      <p class="tiny">Your language has keywords and operators built in. The Special list in the menu bar names seven, and you'll cross most of them off.</p>
+      <p class="tiny">Your language builds in keywords and operators. Built-ins in the menu bar lists seven of them, and most turn out to be messages here.</p>
     </div>
   </div>
 </section>
@@ -255,7 +255,7 @@ import "../../smalltalk/style.css";
 
 <Section id="s8" n={8}>
     <h2>The short list</h2>
-    <p>Look at your Special list. <code>:=</code> and <code>^</code> stay on it. Everything else turned out to be objects and messages.</p>
+    <p>Look at your Built-ins list. <code>:=</code> and <code>^</code> stay on it. Everything else turned out to be objects and messages.</p>
     <p>Files, the display, the compiler and the debugger are objects too. Under them is a thin layer of about 100 primitives. <span class="pg">pp. 52, 543, 563</span> <a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls 1981</a></p>
     <div class="reveal" id="s8done" hidden><p>Ingalls wanted a system one person could understand, which is why this list is so short. <a href="https://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">Ingalls 1981</a></p></div>
   
